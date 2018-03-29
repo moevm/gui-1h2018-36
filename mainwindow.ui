@@ -10,6 +10,12 @@
     <height>744</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -274,7 +280,7 @@
         <item>
          <widget class="QTabWidget" name="tabWidget">
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tabDirectories">
            <attribute name="title">
@@ -303,7 +309,7 @@
              <string>Начать поиск</string>
             </property>
            </widget>
-           <widget class="QWidget" name="">
+           <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
               <x>10</x>
@@ -391,41 +397,68 @@
       </item>
       <item row="0" column="0">
        <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="spacing">
+         <number>3</number>
+        </property>
         <item>
-         <widget class="QCommandLinkButton" name="clbSearch">
+         <widget class="QPushButton" name="clbSearch">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>Начать поиск</string>
           </property>
           <property name="icon">
-           <iconset resource="icons.qrc">
+           <iconset resource="resources.qrc">
             <normaloff>:/icons/search.png</normaloff>:/icons/search.png</iconset>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCommandLinkButton" name="clbCancel">
+         <widget class="QPushButton" name="clbCancel">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>Отмена</string>
           </property>
           <property name="icon">
-           <iconset resource="icons.qrc">
+           <iconset resource="resources.qrc">
             <normaloff>:/icons/cancel.png</normaloff>:/icons/cancel.png</iconset>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCommandLinkButton" name="clbEasyMarking">
+         <widget class="QPushButton" name="clbEasyMarking">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>Изи маркинг</string>
           </property>
           <property name="icon">
-           <iconset resource="icons.qrc">
+           <iconset resource="resources.qrc">
             <normaloff>:/icons/ok.png</normaloff>:/icons/ok.png</iconset>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCommandLinkButton" name="clbDelete">
+         <widget class="QPushButton" name="clbDelete">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="focusPolicy">
            <enum>Qt::StrongFocus</enum>
           </property>
@@ -433,54 +466,91 @@
            <string>Удалить файлы</string>
           </property>
           <property name="icon">
-           <iconset resource="icons.qrc">
+           <iconset resource="resources.qrc">
             <normaloff>:/icons/delete.png</normaloff>:/icons/delete.png</iconset>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCommandLinkButton" name="clbCopy">
+         <widget class="QPushButton" name="clbCopy">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>Скопировать</string>
           </property>
           <property name="icon">
-           <iconset resource="icons.qrc">
+           <iconset resource="resources.qrc">
             <normaloff>:/icons/copy.png</normaloff>:/icons/copy.png</iconset>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCommandLinkButton" name="clbMove">
+         <widget class="QPushButton" name="clbMove">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>Переместить</string>
           </property>
           <property name="icon">
-           <iconset resource="icons.qrc">
+           <iconset resource="resources.qrc">
             <normaloff>:/icons/move.png</normaloff>:/icons/move.png</iconset>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCommandLinkButton" name="clbRename">
+         <widget class="QPushButton" name="clbRename">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>Переименовать</string>
           </property>
           <property name="icon">
-           <iconset resource="icons.qrc">
+           <iconset resource="resources.qrc">
             <normaloff>:/icons/rename.png</normaloff>:/icons/rename.png</iconset>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCommandLinkButton" name="clbExport">
+         <widget class="QPushButton" name="clbExport">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>Экспортировать</string>
           </property>
           <property name="icon">
-           <iconset resource="icons.qrc">
+           <iconset resource="resources.qrc">
             <normaloff>:/icons/export.png</normaloff>:/icons/export.png</iconset>
           </property>
          </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>0</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </item>
@@ -546,7 +616,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="icons.qrc"/>
+  <include location="resources.qrc"/>
  </resources>
  <connections/>
 </ui>
