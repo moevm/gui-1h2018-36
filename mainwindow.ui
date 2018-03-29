@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1200</width>
-    <height>800</height>
+    <width>1440</width>
+    <height>744</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,49 +21,243 @@
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
          <layout class="QVBoxLayout" name="verticalLayout">
-          <property name="leftMargin">
-           <number>20</number>
+          <property name="spacing">
+           <number>0</number>
           </property>
-          <property name="rightMargin">
-           <number>200</number>
+          <property name="leftMargin">
+           <number>10</number>
+          </property>
+          <property name="topMargin">
+           <number>5</number>
           </property>
           <item>
-           <widget class="QRadioButton" name="radioButton_5">
+           <widget class="QRadioButton" name="rbtByteByByte">
             <property name="text">
              <string>Совпадение &quot;Байт-в-байт&quot;</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="radioButton_2">
+           <widget class="QGroupBox" name="grpByteByByte">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border: 0px;</string>
+            </property>
+            <property name="title">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <property name="leftMargin">
+              <number>20</number>
+             </property>
+             <property name="topMargin">
+              <number>5</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>10</number>
+             </property>
+             <item>
+              <widget class="QCheckBox" name="chbBBFilename">
+               <property name="text">
+                <string>Одинаковые имена</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="chbBBExtension">
+               <property name="text">
+                <string>Одинаковые расширения</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="chbBBDatetime">
+               <property name="text">
+                <string>Одинаковое время</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="rbtFilename">
             <property name="text">
              <string>Совпадение имен</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="radioButton_4">
+           <widget class="QGroupBox" name="grpFilename">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border: 0px;</string>
+            </property>
+            <property name="title">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_3">
+             <property name="leftMargin">
+              <number>20</number>
+             </property>
+             <property name="topMargin">
+              <number>5</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>10</number>
+             </property>
+             <item>
+              <widget class="QCheckBox" name="chbFNFilename">
+               <property name="text">
+                <string>Одинаковые имена</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="chbFNExtension">
+               <property name="text">
+                <string>Одинаковые расширения</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="chbFNFileSize">
+               <property name="text">
+                <string>Одинаковые расширения</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="chbFNDatetime">
+               <property name="text">
+                <string>Одинаковое время</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="rbtHash">
             <property name="text">
              <string>Совпадение SHA-1 HASH</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="radioButton_3">
+           <widget class="QGroupBox" name="grpHash">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border: 0px;</string>
+            </property>
+            <property name="title">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_3">
+             <property name="leftMargin">
+              <number>20</number>
+             </property>
+             <property name="topMargin">
+              <number>5</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>10</number>
+             </property>
+             <item>
+              <widget class="QCheckBox" name="chbHashFilename">
+               <property name="text">
+                <string>Одинаковые имена</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="chbHashExtension">
+               <property name="text">
+                <string>Одинаковые расширения</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="chbHashFileSize">
+               <property name="text">
+                <string>Одинаковые расширения</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="chbHashUseCache">
+               <property name="text">
+                <string>Одинаковое время</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="rbtFolders">
             <property name="text">
              <string>Найти дублирующиеся папки</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="radioButton">
+           <widget class="QRadioButton" name="rbtUnique">
             <property name="text">
              <string>Найти уникальные файлы</string>
             </property>
            </widget>
           </item>
           <item>
-           <spacer name="verticalSpacer">
+           <spacer name="vspacerTypes">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
@@ -82,27 +276,111 @@
           <property name="currentIndex">
            <number>0</number>
           </property>
-          <widget class="QWidget" name="tab">
+          <widget class="QWidget" name="tabDirectories">
            <attribute name="title">
             <string>Директория поиска</string>
            </attribute>
+           <widget class="QListView" name="listView">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>10</y>
+              <width>511</width>
+              <height>251</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="btnSearch">
+            <property name="geometry">
+             <rect>
+              <x>530</x>
+              <y>10</y>
+              <width>111</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Начать поиск</string>
+            </property>
+           </widget>
+           <widget class="QWidget" name="">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>270</y>
+              <width>481</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QPushButton" name="btnAddPath">
+               <property name="text">
+                <string>Добавить путь</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnRemovePath">
+               <property name="text">
+                <string>Удалить</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="Line" name="line">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnClearPath">
+               <property name="text">
+                <string>Очистить</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="Line" name="line_2">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnPastePath">
+               <property name="text">
+                <string>Вставить путь</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="chkIncludeSubfolders">
+               <property name="text">
+                <string>Включая подпапки</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
           </widget>
-          <widget class="QWidget" name="tab_2">
+          <widget class="QWidget" name="tabFilters">
            <attribute name="title">
             <string>Фильтры</string>
            </attribute>
           </widget>
-          <widget class="QWidget" name="tab_3">
+          <widget class="QWidget" name="tabExclusions">
            <attribute name="title">
             <string>Исключения</string>
            </attribute>
           </widget>
-          <widget class="QWidget" name="tab_4">
+          <widget class="QWidget" name="tabProtect">
            <attribute name="title">
             <string>Защищенные папки</string>
            </attribute>
           </widget>
-          <widget class="QWidget" name="tab_5">
+          <widget class="QWidget" name="tabPreview">
            <attribute name="title">
             <string>Предпросмотр</string>
            </attribute>
@@ -114,40 +392,40 @@
       <item row="0" column="0">
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="QCommandLinkButton" name="commandLinkButton">
+         <widget class="QCommandLinkButton" name="clbSearch">
           <property name="text">
            <string>Начать поиск</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>../../icons/search.png</normaloff>../../icons/search.png</iconset>
+           <iconset resource="icons.qrc">
+            <normaloff>:/icons/search.png</normaloff>:/icons/search.png</iconset>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCommandLinkButton" name="commandLinkButton_2">
+         <widget class="QCommandLinkButton" name="clbCancel">
           <property name="text">
            <string>Отмена</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>../../icons/cancel.png</normaloff>../../icons/cancel.png</iconset>
+           <iconset resource="icons.qrc">
+            <normaloff>:/icons/cancel.png</normaloff>:/icons/cancel.png</iconset>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCommandLinkButton" name="commandLinkButton_3">
+         <widget class="QCommandLinkButton" name="clbEasyMarking">
           <property name="text">
            <string>Изи маркинг</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>../../icons/icons8-проверено-48.png</normaloff>../../icons/icons8-проверено-48.png</iconset>
+           <iconset resource="icons.qrc">
+            <normaloff>:/icons/ok.png</normaloff>:/icons/ok.png</iconset>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCommandLinkButton" name="commandLinkButton_4">
+         <widget class="QCommandLinkButton" name="clbDelete">
           <property name="focusPolicy">
            <enum>Qt::StrongFocus</enum>
           </property>
@@ -155,65 +433,70 @@
            <string>Удалить файлы</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>../../icons/delete.png</normaloff>../../icons/delete.png</iconset>
+           <iconset resource="icons.qrc">
+            <normaloff>:/icons/delete.png</normaloff>:/icons/delete.png</iconset>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCommandLinkButton" name="commandLinkButton_5">
+         <widget class="QCommandLinkButton" name="clbCopy">
           <property name="text">
            <string>Скопировать</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>../../icons/copy.png</normaloff>../../icons/copy.png</iconset>
+           <iconset resource="icons.qrc">
+            <normaloff>:/icons/copy.png</normaloff>:/icons/copy.png</iconset>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCommandLinkButton" name="commandLinkButton_6">
+         <widget class="QCommandLinkButton" name="clbMove">
           <property name="text">
            <string>Переместить</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>../../icons/move.png</normaloff>../../icons/move.png</iconset>
+           <iconset resource="icons.qrc">
+            <normaloff>:/icons/move.png</normaloff>:/icons/move.png</iconset>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCommandLinkButton" name="commandLinkButton_7">
+         <widget class="QCommandLinkButton" name="clbRename">
           <property name="text">
            <string>Переименовать</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>../../icons/rename.png</normaloff>../../icons/rename.png</iconset>
+           <iconset resource="icons.qrc">
+            <normaloff>:/icons/rename.png</normaloff>:/icons/rename.png</iconset>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCommandLinkButton" name="commandLinkButton_8">
+         <widget class="QCommandLinkButton" name="clbExport">
           <property name="text">
            <string>Экспортировать</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>../../icons/export.png</normaloff>../../icons/export.png</iconset>
+           <iconset resource="icons.qrc">
+            <normaloff>:/icons/export.png</normaloff>:/icons/export.png</iconset>
           </property>
          </widget>
         </item>
        </layout>
       </item>
       <item row="2" column="0">
-       <widget class="QTabWidget" name="tabWidget_2">
+       <widget class="QTabWidget" name="tabResults">
         <property name="currentIndex">
          <number>0</number>
         </property>
-        <widget class="QWidget" name="tab_6">
+        <widget class="QWidget" name="tabResultList">
          <attribute name="title">
           <string>Результаты</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tabProgress">
+         <attribute name="title">
+          <string>Прогресс</string>
          </attribute>
         </widget>
        </widget>
@@ -227,25 +510,43 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1200</width>
-     <height>24</height>
+     <width>1440</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="defaultUp">
     <bool>false</bool>
    </property>
-  </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>Файл</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuAction">
+    <property name="title">
+     <string>Действие</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>Вид</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Помощь</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuAction"/>
+   <addaction name="menuView"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

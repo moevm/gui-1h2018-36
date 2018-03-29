@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/cancel.png</file>
+        <file>icons/copy.png</file>
+        <file>icons/delete.png</file>
+        <file>icons/export.png</file>
+        <file>icons/move.png</file>
+        <file>icons/ok.png</file>
+        <file>icons/rename.png</file>
+        <file>icons/search.png</file>
+        <file>styles.css</file>
+    </qresource>
+</RCC>

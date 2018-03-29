@@ -6,6 +6,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    ui->grpByteByByte->show();
+    ui->grpFilename->hide();
+    ui->grpHash->hide();
+    ui->tabProgress->hide();
 }
 
 MainWindow::~MainWindow()
