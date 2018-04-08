@@ -79,8 +79,11 @@ void MainWindow::on_rbtByteByByte_toggled(bool checked)
     if(checked) {
         ui->grpByteByByte->show();
         this->duplicateType = QString("byteByByte");
-    } else{
+    } else {
         ui->grpByteByByte->hide();
+        ui->chbBBDatetime->setChecked(false);
+        ui->chbBBExtension->setChecked(false);
+        ui->chbBBFilename->setChecked(false);
     }
 }
 
@@ -89,8 +92,12 @@ void MainWindow::on_rbtFilename_toggled(bool checked)
     if(checked) {
         ui->grpFilename->show();
         this->duplicateType = QString("filename");
-    } else{
+    } else {
         ui->grpFilename->hide();
+        ui->chbFNDatetime->setChecked(false);
+        ui->chbFNExtension->setChecked(false);
+        ui->chbFNFilename->setChecked(false);
+        ui->chbFNFileSize->setChecked(false);
     }
 }
 
@@ -99,8 +106,12 @@ void MainWindow::on_rbtHash_toggled(bool checked)
     if(checked) {
         ui->grpHash->show();
         this->duplicateType = QString("hash");
-    } else{
+    } else {
         ui->grpHash->hide();
+        ui->chbHashExtension->setChecked(false);
+        ui->chbHashFilename->setChecked(false);
+        ui->chbHashFileSize->setChecked(false);
+        ui->chbHashUseCache->setChecked(false);
     }
 }
 
