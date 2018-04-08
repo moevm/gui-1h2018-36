@@ -18,17 +18,27 @@ public:
 
 private slots:
     void on_btnAddPath_clicked();
-
     void on_btnRemovePath_clicked();
-
     void on_btnClearPath_clicked();
-
     void on_btnPastePath_clicked();
+
+    void on_rbtByteByByte_toggled(bool checked);
+
+    void on_rbtFilename_toggled(bool checked);
+
+    void on_rbtHash_toggled(bool checked);
+
+    void on_rbtFolders_toggled(bool checked);
+
+    void on_rbtUnique_toggled(bool checked);
+
+    void on_btnSearch_clicked();
 
 private:
     Ui::MainWindow *ui;
     QStringListModel *model;
     QStringList fileNames;
+    QString duplicateType = QString("byteByByte");
 };
 
 #endif // MAINWINDOW_H

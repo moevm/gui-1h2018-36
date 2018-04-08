@@ -3,6 +3,7 @@
 #include "QFileDialog"
 #include "QStringListModel"
 #include "QClipboard"
+#include "QMessageBox"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -71,4 +72,53 @@ void MainWindow::on_btnPastePath_clicked()
     }
     model->setStringList(fileNames);
     ui->listView->setModel(model);
+}
+
+void MainWindow::on_rbtByteByByte_toggled(bool checked)
+{
+    if(checked) {
+        ui->grpByteByByte->show();
+        this->duplicateType = QString("byteByByte");
+    } else{
+        ui->grpByteByByte->hide();
+    }
+}
+
+void MainWindow::on_rbtFilename_toggled(bool checked)
+{
+    if(checked) {
+        ui->grpFilename->show();
+        this->duplicateType = QString("filename");
+    } else{
+        ui->grpFilename->hide();
+    }
+}
+
+void MainWindow::on_rbtHash_toggled(bool checked)
+{
+    if(checked) {
+        ui->grpHash->show();
+        this->duplicateType = QString("hash");
+    } else{
+        ui->grpHash->hide();
+    }
+}
+
+void MainWindow::on_rbtFolders_toggled(bool checked)
+{
+    if(checked) {
+        this->duplicateType = QString("folders");
+    }
+}
+
+void MainWindow::on_rbtUnique_toggled(bool checked)
+{
+    if(checked) {
+        this->duplicateType = QString("unique");
+    }
+}
+
+void MainWindow::on_btnSearch_clicked()
+{
+    QMessageBox::information(NULL, "Тип дубликата", this->duplicateType);
 }
