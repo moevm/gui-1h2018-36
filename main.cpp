@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 
     QFile file(filepath);
     if(!file.open(QFile::ReadOnly |QFile::Text)) {
-        QMessageBox::information(NULL, "Ошибка", "Файл со стилями не найден");
+//        QMessageBox::information(NULL, "Ошибка", "Файл со стилями не найден");
     } else {
         QString styleSheet = QString(file.readAll());
         w.setStyleSheet(styleSheet);

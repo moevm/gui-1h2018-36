@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1440</width>
+    <width>1000</width>
     <height>744</height>
    </rect>
   </property>
@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Duplicate File Finder</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_2">
@@ -462,7 +462,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Изи маркинг</string>
+           <string>Быстрый выбор</string>
           </property>
           <property name="icon">
            <iconset resource="resources.qrc">
@@ -576,7 +576,7 @@
       <item row="2" column="0">
        <widget class="QTabWidget" name="tabResults">
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="tabResultList">
          <attribute name="title">
@@ -599,8 +599,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1440</width>
-     <height>24</height>
+     <width>1000</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="defaultUp">
