@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
+    <width>1057</width>
     <height>744</height>
    </rect>
   </property>
@@ -280,7 +280,7 @@
         <item>
          <widget class="QTabWidget" name="tabWidget">
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tabDirectories">
            <attribute name="title">
@@ -394,6 +394,253 @@
            <attribute name="title">
             <string>Фильтры</string>
            </attribute>
+           <layout class="QGridLayout" name="gridLayout_7">
+            <item row="0" column="0">
+             <layout class="QVBoxLayout" name="verticalLayout_14">
+              <item>
+               <widget class="QLabel" name="fileMaskLabel">
+                <property name="text">
+                 <string>Маска файла:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="maskLineEdit">
+                <property name="inputMask">
+                 <string comment=".*"/>
+                </property>
+                <property name="text">
+                 <string>.</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_8">
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_8">
+                  <item>
+                   <widget class="QCheckBox" name="dateCheckBox">
+                    <property name="text">
+                     <string>Дата изменения файла</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_4">
+                    <item>
+                     <widget class="QLabel" name="sinceDateLabel">
+                      <property name="text">
+                       <string>c</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QDateEdit" name="sinceDateEdit">
+                      <property name="dateTime">
+                       <datetime>
+                        <hour>0</hour>
+                        <minute>0</minute>
+                        <second>0</second>
+                        <year>2017</year>
+                        <month>1</month>
+                        <day>1</day>
+                       </datetime>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_3">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeType">
+                       <enum>QSizePolicy::Fixed</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>100</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="toDateLabel_2">
+                      <property name="text">
+                       <string>по</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QDateEdit" name="toDateEdit">
+                      <property name="dateTime">
+                       <datetime>
+                        <hour>0</hour>
+                        <minute>0</minute>
+                        <second>0</second>
+                        <year>2018</year>
+                        <month>1</month>
+                        <day>1</day>
+                       </datetime>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_7">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_9">
+                  <item>
+                   <widget class="QCheckBox" name="checkBox">
+                    <property name="text">
+                     <string>Размер файла</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_7">
+                    <item>
+                     <widget class="QLabel" name="minSizeLabel">
+                      <property name="text">
+                       <string>от</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QDoubleSpinBox" name="minSizeDoubleSpinBox"/>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_6">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeType">
+                       <enum>QSizePolicy::Fixed</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>100</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="maxSizeLabel">
+                      <property name="text">
+                       <string>до</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QDoubleSpinBox" name="maxSizeDoubleSpinBox"/>
+                    </item>
+                    <item>
+                     <widget class="QComboBox" name="sizeComboBox">
+                      <property name="maximumSize">
+                       <size>
+                        <width>50</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+                      <item>
+                       <property name="text">
+                        <string>Кб</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Мб</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Гб</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_12">
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_10">
+                  <item>
+                   <widget class="QCheckBox" name="hiddenFileCheckBox">
+                    <property name="text">
+                     <string>Скрытые файлы</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="sysFoldCheckBox">
+                    <property name="text">
+                     <string>Защитить системные папки (Рекомендуется)</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="sysFileCheckBox">
+                    <property name="text">
+                     <string>Защитить системные файлы (*.dll *.sys *.ocx *.drv *.dat)</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_11">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>318</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+            <item row="1" column="0">
+             <spacer name="verticalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
           </widget>
           <widget class="QWidget" name="tabExclusions">
            <attribute name="title">
@@ -599,8 +846,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1000</width>
-     <height>21</height>
+     <width>1057</width>
+     <height>22</height>
     </rect>
    </property>
    <property name="defaultUp">

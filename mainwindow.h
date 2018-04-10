@@ -34,6 +34,10 @@ private slots:
 
     void on_btnSearch_clicked();
 
+    void on_dateCheckBox_toggled(bool checked);
+
+    void on_checkBox_toggled(bool checked);
+
 private:
     Ui::MainWindow *ui;
     QStringListModel *model;

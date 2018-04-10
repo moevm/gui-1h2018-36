@@ -17,6 +17,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->grpFilename->hide();
     ui->grpHash->hide();
     ui->tabProgress->hide();
+    ui->sinceDateEdit->setEnabled(false);
+    ui->toDateEdit->setEnabled(false);
+    ui->minSizeDoubleSpinBox->setEnabled(false);
+    ui->maxSizeDoubleSpinBox->setEnabled(false);
+    ui->sizeComboBox->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -132,4 +137,28 @@ void MainWindow::on_rbtUnique_toggled(bool checked)
 void MainWindow::on_btnSearch_clicked()
 {
     QMessageBox::information(NULL, "Тип дубликата", this->duplicateType);
+}
+
+void MainWindow::on_dateCheckBox_toggled(bool checked)
+{
+    if(checked) {
+        ui->sinceDateEdit->setEnabled(true);
+        ui->toDateEdit->setEnabled(true);
+    } else{
+        ui->sinceDateEdit->setEnabled(false);
+        ui->toDateEdit->setEnabled(false);
+    }
+}
+
+void MainWindow::on_checkBox_toggled(bool checked)
+{
+    if(checked) {
+        ui->minSizeDoubleSpinBox->setEnabled(true);
+        ui->maxSizeDoubleSpinBox->setEnabled(true);
+        ui->sizeComboBox->setEnabled(true);
+    } else{
+        ui->minSizeDoubleSpinBox->setEnabled(false);
+        ui->maxSizeDoubleSpinBox->setEnabled(false);
+        ui->sizeComboBox->setEnabled(false);
+    }
 }
