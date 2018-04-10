@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     model = new QStringListModel();
+    modelProtected = new QStringListModel();
 
     ui->grpByteByByte->show();
     ui->grpFilename->hide();
@@ -161,4 +162,54 @@ void MainWindow::on_checkBox_toggled(bool checked)
         ui->maxSizeDoubleSpinBox->setEnabled(false);
         ui->sizeComboBox->setEnabled(false);
     }
+}
+
+void MainWindow::on_btnAddPathProtected_clicked()
+{
+    QFileDialog dialog;
+    dialog.setFileMode(QFileDialog::DirectoryOnly);
+
+    QString fileName;
+    QStringList selectedFileNames;
+    if (dialog.exec())
+        selectedFileNames = dialog.selectedFiles();
+
+    for(int i = 0; i < selectedFileNames.length(); i++){
+        fileName = selectedFileNames.at(i);
+        if(!fileNamesProtected.contains(fileName))
+            fileNamesProtected << fileName;
+    }
+    modelProtected->setStringList(fileNamesProtected);
+    ui->listViewProtected->setModel(modelProtected);
+}
+
+void MainWindow::on_btnRemovePathProtected_clicked()
+{
+    QModelIndex index = ui->listViewProtected->currentIndex();
+    QString itemToDelete = index.data(Qt::DisplayRole).toString();
+    fileNamesProtected.removeOne(itemToDelete);
+    modelProtected->setStringList(fileNamesProtected);
+    ui->listViewProtected->setModel(modelProtected);
+}
+
+void MainWindow::on_btnClearPathProtected_clicked()
+{
+    fileNamesProtected.clear();
+    modelProtected->setStringList(fileNamesProtected);
+    ui->listViewProtected->setModel(modelProtected);
+}
+
+void MainWindow::on_btnPastePathProtected_clicked()
+{
+    QClipboard* c = QApplication::clipboard();
+    QString fileName = c->text();
+    if(fileName != "") {
+        fileName.replace("\\", "/");
+        if (QFile(fileName).exists()) {
+            if(!fileNamesProtected.contains(fileName))
+                fileNamesProtected << fileName;
+        }
+    }
+    modelProtected->setStringList(fileNamesProtected);
+    ui->listViewProtected->setModel(modelProtected);
 }
