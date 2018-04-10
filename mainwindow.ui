@@ -280,7 +280,7 @@
         <item>
          <widget class="QTabWidget" name="tabWidget">
           <property name="currentIndex">
-           <number>3</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tabDirectories">
            <attribute name="title">
@@ -449,22 +449,6 @@
                      </widget>
                     </item>
                     <item>
-                     <spacer name="horizontalSpacer_3">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeType">
-                       <enum>QSizePolicy::Fixed</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>100</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item>
                      <widget class="QLabel" name="toDateLabel_2">
                       <property name="text">
                        <string>по</string>
@@ -488,22 +472,25 @@
                       </property>
                      </widget>
                     </item>
+                    <item>
+                     <spacer name="horizontalSpacer_3">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeType">
+                       <enum>QSizePolicy::Fixed</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>100</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
                    </layout>
                   </item>
                  </layout>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_7">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
                 </item>
                 <item>
                  <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -525,22 +512,6 @@
                     </item>
                     <item>
                      <widget class="QDoubleSpinBox" name="minSizeDoubleSpinBox"/>
-                    </item>
-                    <item>
-                     <spacer name="horizontalSpacer_6">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeType">
-                       <enum>QSizePolicy::Fixed</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>100</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
                     </item>
                     <item>
                      <widget class="QLabel" name="maxSizeLabel">
@@ -577,34 +548,66 @@
                       </item>
                      </widget>
                     </item>
+                    <item>
+                     <spacer name="horizontalSpacer_6">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeType">
+                       <enum>QSizePolicy::Fixed</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>100</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
                    </layout>
                   </item>
                  </layout>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_7">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
                 </item>
                </layout>
               </item>
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_12">
+                <property name="topMargin">
+                 <number>6</number>
+                </property>
                 <item>
                  <layout class="QVBoxLayout" name="verticalLayout_10">
                   <item>
                    <widget class="QCheckBox" name="hiddenFileCheckBox">
                     <property name="text">
-                     <string>Скрытые файлы</string>
+                     <string>Включить скрытые файлы и папки</string>
                     </property>
                    </widget>
                   </item>
                   <item>
                    <widget class="QCheckBox" name="sysFoldCheckBox">
                     <property name="text">
-                     <string>Защитить системные папки (Рекомендуется)</string>
+                     <string>Защищённые системные папки (рекомендуется)</string>
                     </property>
                    </widget>
                   </item>
                   <item>
                    <widget class="QCheckBox" name="sysFileCheckBox">
                     <property name="text">
-                     <string>Защитить системные файлы (*.dll *.sys *.ocx *.drv *.dat)</string>
+                     <string>Защита системных файлов</string>
                     </property>
                    </widget>
                   </item>
@@ -713,13 +716,6 @@
                    </size>
                   </property>
                  </spacer>
-                </item>
-                <item>
-                 <widget class="QCheckBox" name="chkIncludeSubfoldersProtected">
-                  <property name="text">
-                   <string>Включая подпапки</string>
-                  </property>
-                 </widget>
                 </item>
                </layout>
               </item>
@@ -922,7 +918,7 @@
      <x>0</x>
      <y>0</y>
      <width>1057</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="defaultUp">
