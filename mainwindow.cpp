@@ -4,6 +4,7 @@
 #include "QStringListModel"
 #include "QClipboard"
 #include "QMessageBox"
+#include "QCryptographicHash"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -18,11 +19,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->grpFilename->hide();
     ui->grpHash->hide();
     ui->tabProgress->hide();
-    ui->sinceDateEdit->setEnabled(false);
-    ui->toDateEdit->setEnabled(false);
-    ui->minSizeDoubleSpinBox->setEnabled(false);
-    ui->maxSizeDoubleSpinBox->setEnabled(false);
-    ui->sizeComboBox->setEnabled(false);
+    ui->dateSince->setEnabled(false);
+    ui->dateUntil->setEnabled(false);
+    ui->dspbMinSize->setEnabled(false);
+    ui->dspbMaxSize->setEnabled(false);
+    ui->cmbSize->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -138,30 +139,7 @@ void MainWindow::on_rbtUnique_toggled(bool checked)
 void MainWindow::on_btnSearch_clicked()
 {
     QMessageBox::information(NULL, "Тип дубликата", this->duplicateType);
-}
-
-void MainWindow::on_dateCheckBox_toggled(bool checked)
-{
-    if(checked) {
-        ui->sinceDateEdit->setEnabled(true);
-        ui->toDateEdit->setEnabled(true);
-    } else{
-        ui->sinceDateEdit->setEnabled(false);
-        ui->toDateEdit->setEnabled(false);
-    }
-}
-
-void MainWindow::on_checkBox_toggled(bool checked)
-{
-    if(checked) {
-        ui->minSizeDoubleSpinBox->setEnabled(true);
-        ui->maxSizeDoubleSpinBox->setEnabled(true);
-        ui->sizeComboBox->setEnabled(true);
-    } else{
-        ui->minSizeDoubleSpinBox->setEnabled(false);
-        ui->maxSizeDoubleSpinBox->setEnabled(false);
-        ui->sizeComboBox->setEnabled(false);
-    }
+    QStringList* list = this->getListOfFiles();
 }
 
 void MainWindow::on_btnAddPathProtected_clicked()
@@ -212,4 +190,64 @@ void MainWindow::on_btnPastePathProtected_clicked()
     }
     modelProtected->setStringList(fileNamesProtected);
     ui->listViewProtected->setModel(modelProtected);
+}
+
+void MainWindow::on_chbFilterDate_toggled(bool checked)
+{
+    ui->dateSince->setEnabled(checked);
+    ui->dateUntil->setEnabled(checked);
+}
+
+void MainWindow::on_chbFilterSize_toggled(bool checked)
+{
+    ui->dspbMinSize->setEnabled(checked);
+    ui->dspbMaxSize->setEnabled(checked);
+    ui->cmbSize->setEnabled(checked);
+}
+
+void MainWindow::getListOfDirectoriesToSearch()
+{
+}
+
+QStringList* MainWindow::getListOfFiles()
+{
+    QStringList* result = new QStringList();
+    result->append(fileNames);
+
+    for (int i = 0; i < result->size(); i++) {
+        QString fileName = result->at(i);
+        QFileInfo info(fileName);
+        if (info.isDir()) {
+            for (QFileInfo childFileInfo : QDir(fileName).entryInfoList()) {
+                QString childFileName = childFileInfo.fileName();
+                if (childFileName != "." && childFileName != "..") {
+                    result->append(childFileInfo.filePath());
+                }
+            }
+        }
+    }
+
+    for(QString fileName : *result) {
+        QFileInfo info(fileName);
+        if (info.isDir()) {
+            result->removeOne(fileName);
+        }
+    }
+    //Next two lines for debug
+//    model->setStringList(*result);
+//    ui->listView->setModel(model);
+
+    return result;
+}
+
+QByteArray MainWindow::fileChecksum(QString fileName, QCryptographicHash::Algorithm hashAlgorithm)
+{
+    QFile f(fileName);
+    if (f.open(QFile::ReadOnly)) {
+        QCryptographicHash hash(hashAlgorithm);
+        if (hash.addData(&f)) {
+            return hash.result();
+        }
+    }
+    return QByteArray();
 }

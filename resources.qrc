@@ -9,5 +9,6 @@
         <file>icons/rename.png</file>
         <file>icons/search.png</file>
         <file>styles.css</file>
+        <file>icons/app.png</file>
     </qresource>
 </RCC>

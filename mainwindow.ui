@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>Duplicate File Finder</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/icons/app.png</normaloff>:/icons/app.png</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
@@ -352,9 +356,12 @@
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QCheckBox" name="chkIncludeSubfolders">
+                   <widget class="QCheckBox" name="chbIncludeSubfolders">
                     <property name="text">
                      <string>Включая подпапки</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -405,13 +412,72 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="maskLineEdit">
-                <property name="inputMask">
-                 <string comment=".*"/>
-                </property>
-                <property name="text">
-                 <string>.</string>
-                </property>
+               <widget class="QComboBox" name="comboBox">
+                <item>
+                 <property name="text">
+                  <string>Все файлы | *.*</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Images |*.bmp;*.gif;*.jpg;*.pcx;*.png;*.psd;*.ico;*.tif;*.pct</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Все картинки |*.bmp;*.gif;*.jpg;*.jpeg;*.jfif;*.art;*.pcx;*.png;*.psd;*.rle;*.crw;*.dcx;*.dib;*.ico;*.tga;*.tif;*.tiff;*.gem;*.pct;*.pic;*.pix;*.vda;*.vst;*.wpg</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Аудиофайлы |*.mpa;*.mp2;*.mp3;*.m4a;*.wav;*.wma;*.mid;*.midi;*.aif;*.aiff;*.au;*.ra;*.rmi;*.snd;*.ogg</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Видеофайлы |*.avi;*.mov;*.movie;*.mpg;*.m1v;*.mpeg;*.qt;*.ram;*.wm;*.wmv</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Файлы Flash |*.flv;*.f4v;*.f4p;*.f4a;*.f4b</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Документы |*.doc;*.txt;*.rtf;*.html;*.htm;*.pdf;*.ppt;*.pps;*.xls;*.xml;*.dot;*.csv;*.tab;*.asc</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Файлы MS Excel | *.xls;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.xlam;*.xlw</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Файлы MS Word | *.doc;*.docx;*.docm;*.dotx;*.dotm;*.docb</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Архивы |*.zip;*.cab;*.arc;*.arj;*.rar;*.jar;*.ace;*.lhz;*.lha;*.pak;*.bh;*.gz;*.gzip;*.tar;*.tgz;*.sea;*.sit;*.zoo</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Программные файлы |*.exe;*.dll;*.com;*.sys;*.ocx;*.vbx;*.bat;*.msi</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Исходные тексты программ |*.asm;*.c;*.cpp;*.css;*.h;*.bas;*.vba;*.dpr;*.dfm;*.inc;*.pas;*.js;*.java</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Текстовые файлы |*.txt;*.bak</string>
+                 </property>
+                </item>
                </widget>
               </item>
               <item>
@@ -419,7 +485,7 @@
                 <item>
                  <layout class="QVBoxLayout" name="verticalLayout_8">
                   <item>
-                   <widget class="QCheckBox" name="dateCheckBox">
+                   <widget class="QCheckBox" name="chbFilterDate">
                     <property name="text">
                      <string>Дата изменения файла</string>
                     </property>
@@ -435,7 +501,7 @@
                      </widget>
                     </item>
                     <item>
-                     <widget class="QDateEdit" name="sinceDateEdit">
+                     <widget class="QDateEdit" name="dateSince">
                       <property name="dateTime">
                        <datetime>
                         <hour>0</hour>
@@ -459,7 +525,7 @@
                      </widget>
                     </item>
                     <item>
-                     <widget class="QDateEdit" name="toDateEdit">
+                     <widget class="QDateEdit" name="dateUntil">
                       <property name="dateTime">
                        <datetime>
                         <hour>0</hour>
@@ -495,7 +561,7 @@
                 <item>
                  <layout class="QVBoxLayout" name="verticalLayout_9">
                   <item>
-                   <widget class="QCheckBox" name="checkBox">
+                   <widget class="QCheckBox" name="chbFilterSize">
                     <property name="text">
                      <string>Размер файла</string>
                     </property>
@@ -511,7 +577,7 @@
                      </widget>
                     </item>
                     <item>
-                     <widget class="QDoubleSpinBox" name="minSizeDoubleSpinBox"/>
+                     <widget class="QDoubleSpinBox" name="dspbMinSize"/>
                     </item>
                     <item>
                      <widget class="QLabel" name="maxSizeLabel">
@@ -521,10 +587,10 @@
                      </widget>
                     </item>
                     <item>
-                     <widget class="QDoubleSpinBox" name="maxSizeDoubleSpinBox"/>
+                     <widget class="QDoubleSpinBox" name="dspbMaxSize"/>
                     </item>
                     <item>
-                     <widget class="QComboBox" name="sizeComboBox">
+                     <widget class="QComboBox" name="cmbSize">
                       <property name="maximumSize">
                        <size>
                         <width>50</width>
@@ -591,21 +657,21 @@
                 <item>
                  <layout class="QVBoxLayout" name="verticalLayout_10">
                   <item>
-                   <widget class="QCheckBox" name="hiddenFileCheckBox">
+                   <widget class="QCheckBox" name="chbFilterHidden">
                     <property name="text">
                      <string>Включить скрытые файлы и папки</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QCheckBox" name="sysFoldCheckBox">
+                   <widget class="QCheckBox" name="chbFilterSysFolders">
                     <property name="text">
                      <string>Защищённые системные папки (рекомендуется)</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QCheckBox" name="sysFileCheckBox">
+                   <widget class="QCheckBox" name="chbFilterSysFiles">
                     <property name="text">
                      <string>Защита системных файлов</string>
                     </property>
