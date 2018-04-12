@@ -45,8 +45,12 @@ private:
     Ui::MainWindow *ui;
     QStringListModel *model;
     QStringListModel *modelProtected;
+    QStringListModel *foundFilesModel;
+    QStringListModel *foundDuplicatesModel;
     QStringList fileNames;
     QStringList fileNamesProtected;
+    QStringList foundFilesList;
+    QStringList foundDuplicatesList;
     QList<QFile> fileList;
     QString duplicateType = QString("byteByByte");
 };

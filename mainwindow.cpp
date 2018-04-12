@@ -5,6 +5,8 @@
 #include "QClipboard"
 #include "QMessageBox"
 #include "QCryptographicHash"
+#include "QStandardItem"
+#include <QSqlTableModel>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -14,16 +16,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     model = new QStringListModel();
     modelProtected = new QStringListModel();
+    foundFilesModel = new QStringListModel();
+    foundDuplicatesModel = new QStringListModel();
 
-    ui->grpByteByByte->show();
+    ui->grpByteByByte->hide();
     ui->grpFilename->hide();
-    ui->grpHash->hide();
-    ui->tabProgress->hide();
-    ui->dateSince->setEnabled(false);
-    ui->dateUntil->setEnabled(false);
-    ui->dspbMinSize->setEnabled(false);
-    ui->dspbMaxSize->setEnabled(false);
-    ui->cmbSize->setEnabled(false);
+    ui->grpHash->show();
 }
 
 MainWindow::~MainWindow()
@@ -138,8 +136,58 @@ void MainWindow::on_rbtUnique_toggled(bool checked)
 
 void MainWindow::on_btnSearch_clicked()
 {
-    QMessageBox::information(NULL, "Тип дубликата", this->duplicateType);
-    QStringList* list = this->getListOfFiles();
+    foundFilesList.clear();
+    foundDuplicatesList.clear();
+
+    this->foundFilesList = *this->getListOfFiles();
+
+    if (foundFilesList.size()) {
+
+        for (QString filename1 : foundFilesList) {
+            for (QString filename2 : foundFilesList) {
+                if (filename1 != filename2){
+                    QByteArray hashOfFile1 = fileChecksum(filename1, QCryptographicHash::Sha1);
+                    QByteArray hashOfFile2 = fileChecksum(filename2, QCryptographicHash::Sha1);
+
+                    if (hashOfFile1 == hashOfFile2) {
+                        if (!foundDuplicatesList.contains(filename1)) {
+                            foundDuplicatesList.append(filename1);
+                        }
+                    }
+                }
+            }
+        }
+
+        foundDuplicatesModel->setStringList(foundDuplicatesList);
+        ui->lstvFoundDuplicates->setModel(foundDuplicatesModel);
+
+        QString messageEnd = "";
+
+        switch (this->foundDuplicatesList.size() % 100) {
+        case 1:
+            messageEnd = " дубликат";
+            break;
+        case 2: case 3: case 4:
+            messageEnd = " дубликата";
+            break;
+        default:
+            messageEnd = " дубликатов";
+            break;
+        }
+
+        if ((this->foundDuplicatesList.size() % 100) <= 20 && (this->foundDuplicatesList.size() % 100) >= 10) {
+            messageEnd = " дубликатов";
+        }
+
+        QString message = "";
+        if (this->foundDuplicatesList.size()) {
+            message = QString("Найдено ") + QString::number(this->foundDuplicatesList.size()) + messageEnd;
+        } else {
+            message = QString("Дубликатов не найдено ");
+        }
+
+        QMessageBox::information(NULL, "Количество дубликатов", message);
+    }
 }
 
 void MainWindow::on_btnAddPathProtected_clicked()
@@ -233,9 +281,6 @@ QStringList* MainWindow::getListOfFiles()
             result->removeOne(fileName);
         }
     }
-    //Next two lines for debug
-//    model->setStringList(*result);
-//    ui->listView->setModel(model);
 
     return result;
 }
