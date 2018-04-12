@@ -1,7 +1,0 @@
-QPushButton#btnAddPath {
-    border: 0px;
-}
-
-QPushButton#btnAddPath:hover {
-    border: 1px solid #aaa;
-}

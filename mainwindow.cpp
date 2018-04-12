@@ -6,7 +6,6 @@
 #include "QMessageBox"
 #include "QCryptographicHash"
 #include "QStandardItem"
-#include <QSqlTableModel>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
