@@ -187,6 +187,8 @@ void MainWindow::on_btnSearch_clicked()
 
         QMessageBox::information(NULL, "Количество дубликатов", message);
     }
+    else
+        QMessageBox::information(NULL, "Ошибка", "Пожалуйста, добавьте папки для поиска");
 }
 
 void MainWindow::on_btnAddPathProtected_clicked()
