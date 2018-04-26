@@ -39,9 +39,11 @@ private slots:
 
     QStringList* getListOfFiles();
     QStringList* filterListOfFiles(QStringList* list);
-    QStringList* excludeFromListOfFiles(QStringList* list);
+//    QStringList* excludeFromListOfFiles(QStringList* list);
     QStringList* getListOfFilesInDir(QString dirPath);
     QByteArray fileChecksum(QString fileName, QCryptographicHash::Algorithm hashAlgorithm);
+
+    void on_clbSearch_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -53,7 +55,7 @@ private:
     QStringList foundFilesList;
     QStringList foundDuplicatesList;
     QList<QFile> fileList;
-    QString duplicateType = QString("byteByByte");
+    QString duplicateType = QString("hash");
 
     QMap<QString, QString> filterTypes;
 };

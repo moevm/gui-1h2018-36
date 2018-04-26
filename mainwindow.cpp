@@ -174,8 +174,8 @@ void MainWindow::on_btnSearch_clicked()
                             }
                         }
                     } else if (this->duplicateType == "filename") {
-                        int fileNameLength1 = filename1.indexOf("/");
-                        int fileNameLength2 = filename2.indexOf("/");
+                        int fileNameLength1 = filename1.lastIndexOf("/");
+                        int fileNameLength2 = filename2.lastIndexOf("/");
                         QString fileName1 = filename1.right(filename1.length() - (fileNameLength1 + 1));
                         QString fileName2 = filename2.right(filename2.length() - (fileNameLength2 + 1));
 
@@ -358,13 +358,12 @@ QStringList* MainWindow::filterListOfFiles(QStringList* list)
     return result;
 }
 
-QStringList* MainWindow::excludeFromListOfFiles(QStringList* list)
-{
-    QStandardItemModel* model = new QStandardItemModel();
-    QStandardItem* item = new QStandardItem();
-    item->setCheckable(true);
-}
-
+//QStringList* MainWindow::excludeFromListOfFiles(QStringList* list)
+//{
+//    QStandardItemModel* model = new QStandardItemModel();
+//    QStandardItem* item = new QStandardItem();
+//    item->setCheckable(true);
+//}
 
 QByteArray MainWindow::fileChecksum(QString fileName, QCryptographicHash::Algorithm hashAlgorithm)
 {
@@ -376,4 +375,9 @@ QByteArray MainWindow::fileChecksum(QString fileName, QCryptographicHash::Algori
         }
     }
     return QByteArray();
+}
+
+void MainWindow::on_clbSearch_clicked()
+{
+    on_btnSearch_clicked();
 }
