@@ -13,14 +13,30 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    model = new QStringListModel();
-    modelProtected = new QStringListModel();
-    foundFilesModel = new QStringListModel();
+    modelAdded = new QStringListModel();
+    modelProtectedFiles = new QStringListModel();
     foundDuplicatesModel = new QStringListModel();
 
     ui->grpByteByByte->hide();
     ui->grpFilename->hide();
     ui->grpHash->show();
+
+    ui->dateSince->setCalendarPopup(true);
+    ui->dateUntil->setCalendarPopup(true);   
+
+    filterTypes.insert("Все файлы", "(\\S|\\s)*\\.(\\S|\\s)*$");
+    filterTypes.insert("Картинки", "(\\S|\\s)*\\.(bmp|gif|jpg|pcx|png|psd|ico|tif|pct)$");
+    filterTypes.insert("Все картинки", "(\\S|\\s)*\\.(bmp|gif|jpg|jpeg|pcx|png|psd|ico|tif|pct|jfif|art|rle|crw|dcx|dib|tga|tiff|gem|pic|pix|vda|vst|wpg)$");
+    filterTypes.insert("Аудиофайлы", "(\\S|\\s)*\\.(mpa|mp2|mp3|m4a|wav|wma|mid|midi|aif|aiff|au|ra|rmi|snd|ogg)$");
+    filterTypes.insert("Видеофайлы", "(\\S|\\s)*\\.(avi|mov|movie|mpg|m1v|mpeg|qt|ram|wm|wmv)$");
+    filterTypes.insert("Файлы Flash", "(\\S|\\s)*\\.(flv|f4v|f4p|f4a|f4b)$");
+    filterTypes.insert("Документы", "(\\S|\\s)*\\.(doc|txt|rtf|html|htm|pdf|ppt|pps|xls|xml|dot|csv|tab|asc)$");
+    filterTypes.insert("Файлы MS Excel", "(\\S|\\s)*\\.(xls|xlsx|xlsm|xlsb|xltx|xltm|xlam|xlw)$");
+    filterTypes.insert("Файлы MS Word", "(\\S|\\s)*\\.(doc|docx|docm|dotx|dotm|docb)$");
+    filterTypes.insert("Архивы", "(\\S|\\s)*\\.(zip|cab|arc|arj|rar|jar|ace|lhz|lha|pak|bh|gz|gzip|tar|tgz|sea|sit|zoo)$");
+    filterTypes.insert("Программные файлы", "(\\S|\\s)*\\.(exe|dll|com|sys|ocx|vbx|bat|msi)$");
+    filterTypes.insert("Исходные тексты программ", "(\\S|\\s)*\\.(asm|c|cpp|css|h|bas|vba|dpr|dfm|inc|pas|js|java)$");
+    filterTypes.insert("Текстовые файлы", "(\\S|\\s)*\\.(txt|bak)$");
 }
 
 MainWindow::~MainWindow()
@@ -33,34 +49,33 @@ void MainWindow::on_btnAddPath_clicked()
     QFileDialog dialog;
     dialog.setFileMode(QFileDialog::DirectoryOnly);
 
-    QString fileName;
     QStringList selectedFileNames;
     if (dialog.exec())
         selectedFileNames = dialog.selectedFiles();
 
     for(int i = 0; i < selectedFileNames.length(); i++){
-        fileName = selectedFileNames.at(i);
-        if(!fileNames.contains(fileName))
-            fileNames << fileName;
+        QString fileName = selectedFileNames.at(i);
+        if(!addedFileNames.contains(fileName))
+            addedFileNames << fileName;
     }
-    model->setStringList(fileNames);
-    ui->listView->setModel(model);
+    modelAdded->setStringList(addedFileNames);
+    ui->listView->setModel(modelAdded);
 }
 
 void MainWindow::on_btnRemovePath_clicked()
 {
     QModelIndex index = ui->listView->currentIndex();
     QString itemToDelete = index.data(Qt::DisplayRole).toString();
-    fileNames.removeOne(itemToDelete);
-    model->setStringList(fileNames);
-    ui->listView->setModel(model);
+    addedFileNames.removeOne(itemToDelete);
+    modelAdded->setStringList(addedFileNames);
+    ui->listView->setModel(modelAdded);
 }
 
 void MainWindow::on_btnClearPath_clicked()
 {
-    fileNames.clear();
-    model->setStringList(fileNames);
-    ui->listView->setModel(model);
+    addedFileNames.clear();
+    modelAdded->setStringList(addedFileNames);
+    ui->listView->setModel(modelAdded);
 }
 
 void MainWindow::on_btnPastePath_clicked()
@@ -70,12 +85,12 @@ void MainWindow::on_btnPastePath_clicked()
     if(fileName != "") {
         fileName.replace("\\", "/");
         if (QFile(fileName).exists()) {
-            if(!fileNames.contains(fileName))
-                fileNames << fileName;
+            if(!addedFileNames.contains(fileName))
+                addedFileNames << fileName;
         }
     }
-    model->setStringList(fileNames);
-    ui->listView->setModel(model);
+    modelAdded->setStringList(addedFileNames);
+    ui->listView->setModel(modelAdded);
 }
 
 void MainWindow::on_rbtByteByByte_toggled(bool checked)
@@ -138,9 +153,13 @@ void MainWindow::on_btnSearch_clicked()
     foundFilesList.clear();
     foundDuplicatesList.clear();
 
-    this->foundFilesList = *this->getListOfFiles();
+//    this->foundFilesList = *this->getListOfFiles();
+    QStringList* unfilteredFileList = this->getListOfFiles();
+    QStringList* filteredFileList = filterListOfFiles(unfilteredFileList);
 
-    if (foundFilesList.size()) {
+    this->foundFilesList = *filteredFileList;
+
+    if (this->modelAdded->rowCount() > 0) {
 
         for (QString filename1 : foundFilesList) {
             for (QString filename2 : foundFilesList) {
@@ -182,13 +201,13 @@ void MainWindow::on_btnSearch_clicked()
         if (this->foundDuplicatesList.size()) {
             message = QString("Найдено ") + QString::number(this->foundDuplicatesList.size()) + messageEnd;
         } else {
-            message = QString("Дубликатов не найдено ");
+            message = QString("Дубликатов не найдено");
         }
-
         QMessageBox::information(NULL, "Количество дубликатов", message);
-    }
-    else
+    } else {
         QMessageBox::information(NULL, "Ошибка", "Пожалуйста, добавьте папки для поиска");
+        on_btnAddPath_clicked();
+    }
 }
 
 void MainWindow::on_btnAddPathProtected_clicked()
@@ -203,27 +222,27 @@ void MainWindow::on_btnAddPathProtected_clicked()
 
     for(int i = 0; i < selectedFileNames.length(); i++){
         fileName = selectedFileNames.at(i);
-        if(!fileNamesProtected.contains(fileName))
-            fileNamesProtected << fileName;
+        if(!addedFileNamesProtected.contains(fileName))
+            addedFileNamesProtected << fileName;
     }
-    modelProtected->setStringList(fileNamesProtected);
-    ui->listViewProtected->setModel(modelProtected);
+    modelProtectedFiles->setStringList(addedFileNamesProtected);
+    ui->listViewProtected->setModel(modelProtectedFiles);
 }
 
 void MainWindow::on_btnRemovePathProtected_clicked()
 {
     QModelIndex index = ui->listViewProtected->currentIndex();
     QString itemToDelete = index.data(Qt::DisplayRole).toString();
-    fileNamesProtected.removeOne(itemToDelete);
-    modelProtected->setStringList(fileNamesProtected);
-    ui->listViewProtected->setModel(modelProtected);
+    addedFileNamesProtected.removeOne(itemToDelete);
+    modelProtectedFiles->setStringList(addedFileNamesProtected);
+    ui->listViewProtected->setModel(modelProtectedFiles);
 }
 
 void MainWindow::on_btnClearPathProtected_clicked()
 {
-    fileNamesProtected.clear();
-    modelProtected->setStringList(fileNamesProtected);
-    ui->listViewProtected->setModel(modelProtected);
+    addedFileNamesProtected.clear();
+    modelProtectedFiles->setStringList(addedFileNamesProtected);
+    ui->listViewProtected->setModel(modelProtectedFiles);
 }
 
 void MainWindow::on_btnPastePathProtected_clicked()
@@ -233,12 +252,12 @@ void MainWindow::on_btnPastePathProtected_clicked()
     if(fileName != "") {
         fileName.replace("\\", "/");
         if (QFile(fileName).exists()) {
-            if(!fileNamesProtected.contains(fileName))
-                fileNamesProtected << fileName;
+            if(!addedFileNamesProtected.contains(fileName))
+                addedFileNamesProtected << fileName;
         }
     }
-    modelProtected->setStringList(fileNamesProtected);
-    ui->listViewProtected->setModel(modelProtected);
+    modelProtectedFiles->setStringList(addedFileNamesProtected);
+    ui->listViewProtected->setModel(modelProtectedFiles);
 }
 
 void MainWindow::on_chbFilterDate_toggled(bool checked)
@@ -254,14 +273,10 @@ void MainWindow::on_chbFilterSize_toggled(bool checked)
     ui->cmbSize->setEnabled(checked);
 }
 
-void MainWindow::getListOfDirectoriesToSearch()
-{
-}
-
 QStringList* MainWindow::getListOfFiles()
 {
     QStringList* result = new QStringList();
-    result->append(fileNames);
+    result->append(addedFileNames);
 
     for (int i = 0; i < result->size(); i++) {
         QString fileName = result->at(i);
@@ -285,6 +300,56 @@ QStringList* MainWindow::getListOfFiles()
 
     return result;
 }
+
+QStringList* MainWindow::getListOfFilesInDir(QString dirPath)
+{
+    QStringList* listOfFilePaths = new QStringList();
+
+    QFileInfo info(dirPath);
+    if (info.isDir()) {
+        for (QFileInfo childNodeInfo : QDir(dirPath).entryInfoList()) {
+            if (childNodeInfo.isDir()) {
+                QStringList* listOfChildFilePaths = getListOfFilesInDir(childNodeInfo.filePath());
+                listOfFilePaths->append(*listOfChildFilePaths);
+            } else {
+                QString childNodeName = childNodeInfo.fileName();
+                if (childNodeName != "." && childNodeName != "..") {
+                    listOfFilePaths->append(childNodeInfo.filePath());
+                }
+            }
+        }
+    }
+
+    return listOfFilePaths;
+}
+
+QStringList* MainWindow::filterListOfFiles(QStringList* list)
+{
+    QStringList* result = new QStringList();
+    QString option = ui->cmbFilterMask->currentText();
+
+    int maskNameLength = option.indexOf("|");
+    QString maskName = option.left(maskNameLength - 1);
+    QString regExpMask = filterTypes.find(maskName).value();
+    QRegularExpression regExp(regExpMask);
+
+    for (int i = 0; i < list->size(); i++) {
+        QString filePath = list->at(i);
+
+        QRegularExpressionMatch match = regExp.match(filePath);
+
+        if (match.hasMatch()) {
+            result->append(filePath);
+        }
+    }
+    return result;
+}
+
+QStringList* MainWindow::excludeFromListOfFiles(QStringList* list)
+{
+
+}
+
 
 QByteArray MainWindow::fileChecksum(QString fileName, QCryptographicHash::Algorithm hashAlgorithm)
 {

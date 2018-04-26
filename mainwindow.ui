@@ -49,7 +49,7 @@
              <bool>true</bool>
             </property>
             <property name="checked">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -157,14 +157,14 @@
              <item>
               <widget class="QCheckBox" name="chbFNExtension">
                <property name="text">
-                <string>Одинаковые расширения</string>
+                <string>Одинаковое расширение</string>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QCheckBox" name="chbFNFileSize">
                <property name="text">
-                <string>Одинаковые расширения</string>
+                <string>Одинаковый размер</string>
                </property>
               </widget>
              </item>
@@ -182,6 +182,9 @@
            <widget class="QRadioButton" name="rbtHash">
             <property name="text">
              <string>Совпадение SHA-1 HASH</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -231,14 +234,14 @@
              <item>
               <widget class="QCheckBox" name="chbHashExtension">
                <property name="text">
-                <string>Одинаковые расширения</string>
+                <string>Одинаковый размер</string>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QCheckBox" name="chbHashFileSize">
                <property name="text">
-                <string>Одинаковые расширения</string>
+                <string>Одинаковое расширение</string>
                </property>
               </widget>
              </item>
@@ -284,7 +287,7 @@
         <item>
          <widget class="QTabWidget" name="tabWidget">
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tabDirectories">
            <attribute name="title">
@@ -412,15 +415,15 @@
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="comboBox">
+               <widget class="QComboBox" name="cmbFilterMask">
                 <item>
                  <property name="text">
-                  <string>Все файлы | *.*</string>
+                  <string>Все файлы |*.*</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Images |*.bmp;*.gif;*.jpg;*.pcx;*.png;*.psd;*.ico;*.tif;*.pct</string>
+                  <string>Картинки |*.bmp;*.gif;*.jpg;*.pcx;*.png;*.psd;*.ico;*.tif;*.pct</string>
                  </property>
                 </item>
                 <item>
@@ -450,12 +453,12 @@
                 </item>
                 <item>
                  <property name="text">
-                  <string>Файлы MS Excel | *.xls;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.xlam;*.xlw</string>
+                  <string>Файлы MS Excel |*.xls;*.xlsx;*.xlsm;*.xlsb;*.xltx;*.xltm;*.xlam;*.xlw</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Файлы MS Word | *.doc;*.docx;*.docm;*.dotx;*.dotm;*.docb</string>
+                  <string>Файлы MS Word |*.doc;*.docx;*.docm;*.dotx;*.dotm;*.docb</string>
                  </property>
                 </item>
                 <item>

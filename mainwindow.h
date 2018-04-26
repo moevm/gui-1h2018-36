@@ -37,22 +37,25 @@ private slots:
     void on_chbFilterDate_toggled(bool checked);
     void on_chbFilterSize_toggled(bool checked);
 
-    void getListOfDirectoriesToSearch();
     QStringList* getListOfFiles();
+    QStringList* filterListOfFiles(QStringList* list);
+    QStringList* excludeFromListOfFiles(QStringList* list);
+    QStringList* getListOfFilesInDir(QString dirPath);
     QByteArray fileChecksum(QString fileName, QCryptographicHash::Algorithm hashAlgorithm);
 
 private:
     Ui::MainWindow *ui;
-    QStringListModel *model;
-    QStringListModel *modelProtected;
-    QStringListModel *foundFilesModel;
+    QStringListModel *modelAdded;
+    QStringListModel *modelProtectedFiles;
     QStringListModel *foundDuplicatesModel;
-    QStringList fileNames;
-    QStringList fileNamesProtected;
+    QStringList addedFileNames;
+    QStringList addedFileNamesProtected;
     QStringList foundFilesList;
     QStringList foundDuplicatesList;
     QList<QFile> fileList;
     QString duplicateType = QString("byteByByte");
+
+    QMap<QString, QString> filterTypes;
 };
 
 #endif // MAINWINDOW_H
