@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->grpHash->show();
 
     ui->dateSince->setCalendarPopup(true);
-    ui->dateUntil->setCalendarPopup(true);   
+    ui->dateUntil->setCalendarPopup(true);
 
     filterTypes.insert("Все файлы", "(\\S|\\s)*\\.(\\S|\\s)*$");
     filterTypes.insert("Картинки", "(\\S|\\s)*\\.(bmp|gif|jpg|pcx|png|psd|ico|tif|pct)$");
@@ -153,7 +153,7 @@ void MainWindow::on_btnSearch_clicked()
     foundFilesList.clear();
     foundDuplicatesList.clear();
 
-//    this->foundFilesList = *this->getListOfFiles();
+    //    this->foundFilesList = *this->getListOfFiles();
     QStringList* unfilteredFileList = this->getListOfFiles();
     QStringList* filteredFileList = filterListOfFiles(unfilteredFileList);
 
@@ -164,12 +164,25 @@ void MainWindow::on_btnSearch_clicked()
         for (QString filename1 : foundFilesList) {
             for (QString filename2 : foundFilesList) {
                 if (filename1 != filename2){
-                    QByteArray hashOfFile1 = fileChecksum(filename1, QCryptographicHash::Sha1);
-                    QByteArray hashOfFile2 = fileChecksum(filename2, QCryptographicHash::Sha1);
+                    if (this->duplicateType == "hash") {
+                        QByteArray hashOfFile1 = fileChecksum(filename1, QCryptographicHash::Sha1);
+                        QByteArray hashOfFile2 = fileChecksum(filename2, QCryptographicHash::Sha1);
 
-                    if (hashOfFile1 == hashOfFile2) {
-                        if (!foundDuplicatesList.contains(filename1)) {
-                            foundDuplicatesList.append(filename1);
+                        if (hashOfFile1 == hashOfFile2) {
+                            if (!foundDuplicatesList.contains(filename1)) {
+                                foundDuplicatesList.append(filename1);
+                            }
+                        }
+                    } else if (this->duplicateType == "filename") {
+                        int fileNameLength1 = filename1.indexOf("/");
+                        int fileNameLength2 = filename2.indexOf("/");
+                        QString fileName1 = filename1.right(filename1.length() - (fileNameLength1 + 1));
+                        QString fileName2 = filename2.right(filename2.length() - (fileNameLength2 + 1));
+
+                        if (fileName1 == fileName2) {
+                            if (!foundDuplicatesList.contains(filename1)) {
+                                foundDuplicatesList.append(filename1);
+                            }
                         }
                     }
                 }
@@ -347,7 +360,9 @@ QStringList* MainWindow::filterListOfFiles(QStringList* list)
 
 QStringList* MainWindow::excludeFromListOfFiles(QStringList* list)
 {
-
+    QStandardItemModel* model = new QStandardItemModel();
+    QStandardItem* item = new QStandardItem();
+    item->setCheckable(true);
 }
 
 
