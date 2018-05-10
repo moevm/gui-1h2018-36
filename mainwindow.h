@@ -36,10 +36,9 @@ private slots:
     void on_chbFilterDate_toggled(bool checked);
     void on_chbFilterSize_toggled(bool checked);
 
-    QStringList* getListOfFiles();
     QStringList* filterListOfFiles(QStringList* list);
     void excludeFromListOfFiles(QStringList* list);
-    QStringList* getListOfFilesInDir(QString dirPath);
+    QStringList* getListOfFiles();
     QString getFileName(QString fullFileName);
     QString getFileExtension(QString fullFileName);
     QString getOnlyFileName(QString fullFileName);
@@ -49,8 +48,6 @@ private slots:
     bool compareByteByByte(QString fullFileName1, QString fullFileName2);
     bool compareFileExtension(QString fullFileName1, QString fullFileName2);
     QByteArray fileChecksum(QString fileName, QCryptographicHash::Algorithm hashAlgorithm);
-
-    void on_clbSearch_clicked();
 
 private:
     Ui::MainWindow *ui;

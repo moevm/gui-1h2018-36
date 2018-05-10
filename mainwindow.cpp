@@ -6,7 +6,6 @@
 #include "QMessageBox"
 #include "QCryptographicHash"
 #include "QStandardItem"
-#include "QDebug"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -25,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dateSince->setCalendarPopup(true);
     ui->dateUntil->setCalendarPopup(true);
 
-    filterTypes.insert("Все файлы", "(\\S|\\s)*\\.(\\S|\\s)*$");
+    filterTypes.insert("Все файлы", "(\\S|\\s)*\\.?(\\S|\\s)*$");
     filterTypes.insert("Картинки", "(\\S|\\s)*\\.(bmp|gif|jpg|pcx|png|psd|ico|tif|pct)$");
     filterTypes.insert("Все картинки", "(\\S|\\s)*\\.(bmp|gif|jpg|jpeg|pcx|png|psd|ico|tif|pct|jfif|art|rle|crw|dcx|dib|tga|tiff|gem|pic|pix|vda|vst|wpg)$");
     filterTypes.insert("Аудиофайлы", "(\\S|\\s)*\\.(mpa|mp2|mp3|m4a|wav|wma|mid|midi|aif|aiff|au|ra|rmi|snd|ogg)$");
@@ -167,13 +166,6 @@ void MainWindow::on_btnSearch_clicked()
         compareByFileSize = ui->chbFNFileSize->isChecked()  || ui->chbHashFileSize->isChecked();
         compareByExtension = ui->chbBBExtension->isChecked() || ui->chbHashExtension->isChecked();
 
-        //        QString mes = "compareByteByByte: " + QString::number(compareCompletely) +
-        //                ", compareByHash: " + QString::number(compareByHash) +
-        //                ", compareByFilename: " +QString::number(compareByFilename)+
-        //                ", compareByFileSize: " + QString::number(compareByFileSize) +
-        //                ", compareByExtension: " + QString::number(compareByExtension);
-        //        qDebug() << mes;
-
         this->foundFilesList = *filteredFileList;
 
         int len = foundFilesList.count();
@@ -256,13 +248,11 @@ bool MainWindow::compareByteByByte(QString fullFileName1, QString fullFileName2)
         if (file1.open(QFile::ReadOnly | QFile::Truncate)) {
             data1 = file1.readAll();
             file1.close();
-            qDebug() << QString::number(data1.size());
         }
 
         if (file2.open(QFile::ReadOnly | QFile::Truncate)) {
             data2 = file2.readAll();
             file2.close();
-            qDebug() << QString::number(data2.size());
         }
     } else {
         return false;
@@ -385,28 +375,6 @@ QStringList* MainWindow::getListOfFiles()
     return result;
 }
 
-QStringList* MainWindow::getListOfFilesInDir(QString dirPath)
-{
-    QStringList* listOfFilePaths = new QStringList();
-
-    QFileInfo info(dirPath);
-    if (info.isDir()) {
-        for (QFileInfo childNodeInfo : QDir(dirPath).entryInfoList()) {
-            if (childNodeInfo.isDir()) {
-                QStringList* listOfChildFilePaths = getListOfFilesInDir(childNodeInfo.filePath());
-                listOfFilePaths->append(*listOfChildFilePaths);
-            } else {
-                QString childNodeName = childNodeInfo.fileName();
-                if (childNodeName != "." && childNodeName != "..") {
-                    listOfFilePaths->append(childNodeInfo.filePath());
-                }
-            }
-        }
-    }
-
-    return listOfFilePaths;
-}
-
 QStringList* MainWindow::filterListOfFiles(QStringList* list)
 {
     QStringList* result = new QStringList();
@@ -474,9 +442,4 @@ void MainWindow::excludeFromListOfFiles(QStringList* list)
                 list->removeAll(path);
         }
     }
-}
-
-void MainWindow::on_clbSearch_clicked()
-{
-    on_btnSearch_clicked();
 }
